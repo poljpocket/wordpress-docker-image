@@ -37,4 +37,6 @@ VOLUME /backup
 ENV WEB_USER_ID=33
 ENV WEB_GROUP_ID=33
 
+WORKDIR /var/www/html
+
 CMD ["/scripts/run.sh"]
