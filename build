@@ -1,0 +1,20 @@
+#!/usr/bin/env php
+
+<?php
+
+$versions = [
+    'php7.4' => '7.4',
+    'php8.0' => '8.0',
+    'php8.1' => '8.1',
+    'php8.2' => '8.2',
+    'php8.3' => '8.3',
+];
+
+foreach ($versions as $tag => $version) {
+    echo 'building image for version $version\n';
+    system("docker build --build-arg PHP_VERSION=$version -t poljpocket/wordpress:$tag . ");
+}
+
+$latest = array_key_last($versions);
+echo "updating 'latest' tag to $latest\n";
+system("docker tag poljpocket/wordpress:$latest poljpocket/wordpress:latest");
